@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FileSharingApp.Models.FileModel>
+
+@{
+    ViewData["Title"] = "Files List";
+}
+
+<h1>Files List</h1>
+
+<p>
+    <a asp-action="Upload" class="btn btn-success">Upload New File</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                    @item.UploadDate.ToString("g")
+                </td>
+                <td>
+                    <a asp-action="Download" asp-route-id="@item.Id" class="btn btn-primary">Download</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
